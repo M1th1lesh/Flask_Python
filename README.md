@@ -14,7 +14,9 @@ authentication of log in complete
 profile page completed with ability to updated new image and image resize
 
 
+Working  : 
 
+Create , Update and delete post
 
 Pending errors : 
 

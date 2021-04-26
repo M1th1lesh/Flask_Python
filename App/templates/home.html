@@ -4,10 +4,16 @@
     
     {%for post in posts%}
         <article class="media content-section">
+            <!-- article img is from main.css -->
+            <div class="media-object " > 
+                <img class=" media-object rounded-circle article-img " src=" {{ url_for('static',filename = 'profile_pics/' + post.author.image_file)}}">
+            </div>
+            
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#"> {{ post.author}}</a>
-                    <small class="text-muted"> {{ post.date_posted }}</small>
+                    <a class="mr-5 mt-0 " href=" {{url_for('about')}}"> {{ post.author.username  }}</a> 
+                    <!-- .username is added to only give out user name of author and strftime is used to show date time as our requirement-->
+                    <small class="text-muted ml-6"> {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
                 <h2><a class="article-title" href="#"> {{ post.title }}</a></h2>
                 <p class="article-content"> {{ post.content}}</p>
@@ -16,4 +22,5 @@
 
 
     {% endfor %}
+    
 {% endblock content %}

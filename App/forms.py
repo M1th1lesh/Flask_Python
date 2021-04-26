@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField,PasswordField , SubmitField ,BooleanField, ValidationError
+from wtforms import StringField,PasswordField , SubmitField ,BooleanField, ValidationError,TextAreaField
 #validationError is used to send out validation error messages
 #to import string fields and passowrd fields in froom as fields will be strings , Submit fields to submit teh ddata
 # boolen fileds for True false output
@@ -74,3 +74,8 @@ class UpdateAccoutForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first() 
             if user : 
                 raise ValidationError('This email is taken . Please user different one')
+
+class PostForm(FlaskForm):
+    title = StringField('Title',validators=[DataRequired()])
+    content = TextAreaField('Content',validators=[DataRequired()])
+    submit =  SubmitField('Post')

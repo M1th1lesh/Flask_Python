@@ -2,7 +2,7 @@ from flask import render_template,url_for,flash,redirect , request #
 from App import app , db , bcrypt #app,db , bcrypt is imported from teh __init__ file
 #flash is used to give one time alerts , url_for is used to find methods/pages on it's own
 #redirect to move to another page
-from App.forms import RegistrationForm,LoginForm,UpdateAccoutForm  #importing  classes from our forms.py
+from App.forms import RegistrationForm,LoginForm,UpdateAccoutForm , PostForm  #importing  classes from our forms.py
 from App.models import User, Post
 from flask_login import login_user,current_user,logout_user ,login_required
 import secrets
@@ -10,25 +10,12 @@ import os #for path functionality
 from PIL import Image
 
 
-posts= [
-    {
-        'author': 'Robin Sharma ',
-        'title':'The 5 AM Club',
-        'content':'Own your Morning , Elevate your life',
-        'date_posted':'19th april 2021'
-    },
-    {
-        'author': 'JAy  Shetty ',
-        'title':'Think like a monk',
-        'content':'imporve your thinking',
-        'date_posted':'20th april 2021'
-    }
-]
 
 
 @app.route("/")
 @app.route("/home") #home page route
 def home():
+    posts =  Post.query.all()
     return render_template('home.html',posts=posts)
 
 #About Page route
@@ -119,3 +106,15 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static',filename='profile_pics/'+current_user.image_file)
     return render_template('account.html',title='Account',image_file =  image_file, form = form)
+
+@app.route("/post/new" , methods= ['GET','POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title = form.title.data , content = form.content.data ,author =  current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash("your post has been created" , 'success')
+        return redirect(url_for('home'))
+    return render_template('create_post.html',title='New Post',form =form )
