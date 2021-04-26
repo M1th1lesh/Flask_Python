@@ -8,3 +8,4 @@ pip3 install flask-wtf
 pip3 install email-validator
 pip3 install flask-sqlalchemy
 pip install flask-bcrypt
+pip install flask-login

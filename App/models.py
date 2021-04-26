@@ -1,8 +1,14 @@
-from App import db
+from App import db,login_manager  #from init 
+from flask_login import UserMixin # to get methods like is_authenticated return True/Flase,is active,is getId, is_anonymous,
 from datetime import datetime
 
+@login_manager.user_loader #this decorater is used so that extention knows this is the function to get a user by an ID
+#@decorate
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 #SQL model data bases
-class User(db.Model):
+class User(db.Model , UserMixin):
     id = db.Column(db.Integer , primary_key=True )
     username = db.Column(db.String(20) , unique=True, nullable=False)
     email = db.Column(db.String(120) , unique=True, nullable=False)
