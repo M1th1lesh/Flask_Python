@@ -12,18 +12,20 @@ separating routes models and packages
 unquie entries in register complete
 authentication of log in complete
 profile page completed with ability to updated new image and image resize
-
+Create , Update and delete post completed
 
 Working  : 
 
-Create , Update and delete post
+
 
 Pending errors : 
 
-Flash message not showing up after form submission
-in SQLalchemy
+***** Flash message not showing up after form submission
+***** Formatting of text and text sizes pending
+IN SQLalchemy
 Lazy ??
-media-left not working showing image above and text below
+
+
 import os 
 
 pip install Pillow ?  watch  video

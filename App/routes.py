@@ -1,4 +1,4 @@
-from flask import render_template,url_for,flash,redirect , request #
+from flask import render_template,url_for,flash,redirect , request , abort #
 from App import app , db , bcrypt #app,db , bcrypt is imported from teh __init__ file
 #flash is used to give one time alerts , url_for is used to find methods/pages on it's own
 #redirect to move to another page
@@ -107,6 +107,7 @@ def account():
     image_file = url_for('static',filename='profile_pics/'+current_user.image_file)
     return render_template('account.html',title='Account',image_file =  image_file, form = form)
 
+#new post
 @app.route("/post/new" , methods= ['GET','POST'])
 @login_required
 def new_post():
@@ -117,4 +118,43 @@ def new_post():
         db.session.commit()
         flash("your post has been created" , 'success')
         return redirect(url_for('home'))
-    return render_template('create_post.html',title='New Post',form =form )
+    return render_template('create_post.html',title='New Post',form =form ,legend= 'New Post')
+
+
+# getting to the post via post_id and displaying indiviuallly
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    post = Post.query.get_or_404(post_id) #give me the id or return 404 if id doesnot exixts
+    return render_template('post.html' , title = post.title , post=post)
+
+# Updating the post 
+@app.route("/post/<int:post_id>/update",methods= ['GET','POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403) #403 response is for http response for forbidden route 
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit() #directly commiting as it is already in data bases
+        flash("your post has been updated ", 'success')
+        print("Post updated")
+        return redirect(url_for('post',post_id = post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create_post.html',title='Update Post',form =form , legend= 'Update Post')
+    
+#Deelete post route
+@app.route("/post/<int:post_id>/delete",methods= ['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403) #403 response is for http response for forbidden rou
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post hass been deleted', 'success')
+    return redirect(url_for('home'))

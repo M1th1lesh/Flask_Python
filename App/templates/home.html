@@ -15,7 +15,7 @@
                     <!-- .username is added to only give out user name of author and strftime is used to show date time as our requirement-->
                     <small class="text-muted ml-6"> {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
-                <h2><a class="article-title" href="#"> {{ post.title }}</a></h2>
+                <h2><a class="article-title" href=" {{url_for('post',post_id=post.id)}}"> {{ post.title }}</a></h2>
                 <p class="article-content"> {{ post.content}}</p>
             </div>
         </article>    
