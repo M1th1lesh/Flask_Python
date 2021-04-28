@@ -13,6 +13,10 @@ unquie entries in register complete
 authentication of log in complete
 profile page completed with ability to updated new image and image resize
 Create , Update and delete post completed
+Pagination completed : 
+pages divided with per page 5 .
+once we click on author we get posts by that particular user 
+posts ordered as latest post first
 
 Working  : 
 
