@@ -3,7 +3,7 @@
 Trying to learn Flask
 
 Completed : 
-navbar completed
+navbar completed \n
 sign up page completed
 log in completed
 db tables created
