@@ -50,6 +50,7 @@ app,config['MAIL_PASSWORD'] = '8446830125'
 
 1. Post content moving out of the div
 2. Do not share it with anyone else as this contents passwords
+3. sender name not set to noreply@mydocs.com
 
 
 Installments needed : 
