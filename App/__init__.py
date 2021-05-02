@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy   #for database things
 from flask_bcrypt import Bcrypt #to hash passwords
 from flask_login import LoginManager # to manager logins and login session management
+from flask_mail import Mail
+import os 
 
 app = Flask(__name__)
 
@@ -21,5 +23,16 @@ login_manager = LoginManager(app) # login_manager is obj
 login_manager.login_view = 'login' #passing fucntion name of log in so that it redirects if user is not 
 #logged in and tries to go a page where login_required is added
 login_manager.login_message_category = 'info'
+
+#setting up constants for mailing server 
+
+app.config['MAIL_SERVER']= 'smtp.googlemail.com'  #setting up our mail server as gmail server
+app.config['MAIL_PORT']= 587 
+app.config['MAIL_USE_TLS']= True  
+#pending setting up of environment varaibles  os.environ.get('USER_EMAIL') and 'USER_PASS'
+app.config['MAIL_USERNAME'] = "dbitbatch2017@gmail.com"
+app.config['MAIL_PASSWORD'] = "8446830125"
+
+mail = Mail(app)
 
 from App import routes

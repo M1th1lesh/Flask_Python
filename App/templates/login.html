@@ -52,10 +52,11 @@
             
             <div class="form-group mb-4">
                 {{form.submit(class="btn btn-outline-info")}}
+                <small class="text-muted ml-2">
+                    <a href="{{ url_for('reset_request') }}"> Forgotten password ? </a>
+                </small>
             </div>
-            <small class="text-muted ml-2">
-                <a href="#"> Forgotten password ? </a>
-            </small>
+            
         </form>
     </div>
 
