@@ -20,9 +20,11 @@ pages divided with per page 5 .
 once we click on author we get posts by that particular user 
 posts ordered as latest post first
 Email and password reset
+Blueprint and configuration
+Moved creation of app to a function
 
 Working  : 
-Blueprint and configuration
+
 
 
 
