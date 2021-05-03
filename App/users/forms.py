@@ -1,15 +1,11 @@
-from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField,PasswordField , SubmitField ,BooleanField, ValidationError,TextAreaField
-#validationError is used to send out validation error messages
-#to import string fields and passowrd fields in froom as fields will be strings , Submit fields to submit teh ddata
-# boolen fileds for True false output
-from App.models import User
+#user_forms.py
 
-from wtforms.validators import DataRequired ,Length  ,EqualTo ,Email
-# for data required in fill validation , length for length validation
-#emial for email validation , Equalto for comparing strings
+from flask_wtf import FlaskForm
+from flask_wtf.file import FileField , FileAllowed
+from wtforms import StringField,PasswordField,SubmitField,BooleanField
+from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError
 from flask_login import current_user
+from App.models import User
 
 # to create registration forms in flask
 class RegistrationForm(FlaskForm):
@@ -74,11 +70,6 @@ class UpdateAccoutForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first() 
             if user : 
                 raise ValidationError('This email is taken . Please user different one')
-
-class PostForm(FlaskForm):
-    title = StringField('Title',validators=[DataRequired()])
-    content = TextAreaField('Content',validators=[DataRequired()])
-    submit =  SubmitField('Post')
 
 #go to reset password page
 class RequestResetForm(FlaskForm):

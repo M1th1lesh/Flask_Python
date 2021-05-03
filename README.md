@@ -22,7 +22,7 @@ posts ordered as latest post first
 Email and password reset
 
 Working  : 
-
+Blueprint and configuration
 
 
 
@@ -46,6 +46,8 @@ setting up of environment variable of password and emial
 #pending setting up of environment varaibles  os.environ.get('USER_EMAIL') and 'USER_PASS'
 app.config['MAIL_USERNAME'] = 'dbitbatch2017@gmail.com'
 app,config['MAIL_PASSWORD'] = '8446830125'
+SECRET_KEY = '2e898bf09a9b59247b89ea7ce1ae45cd'
+SQLALCHEMY_DATABASE_URI='sqlite:///flask_app_site.db'
 
 
 1. Post content moving out of the div

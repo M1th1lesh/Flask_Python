@@ -1,0 +1,33 @@
+#users
+    /routes.py contains 
+        >register 
+        >login
+        >logout
+        >account
+        >user_posts
+        >reset_request
+        >reset_token
+
+    /utils.py   
+        save_picture
+        sent_reset_email
+    /forms.py
+        Registration forms
+        LoginForm
+        UpdateAccoutForm
+        RequestResetForm
+        ResetPasswordForm
+
+#posts
+    /forms.py
+        PostForm
+    /routes.py
+        new_post
+        post
+        update_post
+        delete_post
+
+#main 
+    /routes.py
+        home
+        about

@@ -8,12 +8,12 @@
             
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-5 mt-0 " href=" {{url_for('user_posts', username=post.author.username )}}"> {{ post.author.username  }}</a>  
+                    <a class="mr-5 mt-0 " href=" {{url_for('users.user_posts', username=post.author.username )}}"> {{ post.author.username  }}</a>  
                     <!-- .username is added to only give out user name of author and strftime is used to show date time as our requirement-->
                     <small class="text-muted ml-6"> {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                     {% if post.author == current_user %}
                         <div>
-                            <a  class="btn btn-secondary btn-sm mt-1 mb-1" href=" {{ url_for('update_post',post_id = post.id) }}">Update</a>
+                            <a  class="btn btn-secondary btn-sm mt-1 mb-1" href=" {{ url_for('posts.update_post',post_id = post.id) }}">Update</a>
                             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal"> 
                                 Delete 
                             </button>
@@ -44,7 +44,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 
-                <form action="{{ url_for('delete_post',post_id=post.id) }}" method="POST">  
+                <form action="{{ url_for('posts.delete_post',post_id=post.id) }}" method="POST">  
                     <!-- action to go to the delete post route -->
                     <input class="btn btn-danger" type="submit" value="Delete">
                 </form>
