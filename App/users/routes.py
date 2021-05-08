@@ -17,7 +17,7 @@ from App.users.forms import (RegistrationForm , LoginForm , UpdateAccoutForm ,
 from App.users.utils import save_picture,send_reset_email
 
 users = Blueprint('users', __name__)
-
+#Blueprint('blueprint_name', __name__ (this is mandatory to specify it's a blueprint name))
 
 #Registration page route
 @users.route("/register" , methods= ['GET','POST']) #givng list of allowed methods

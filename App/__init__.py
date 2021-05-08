@@ -31,9 +31,11 @@ def create_app(config_class=Config):
     from App.users.routes import users  #this users is the instance of the blueprint class
     from App.posts.routes import posts #this posts is the instance of the blueprint class
     from App.main.routes import main #this main is the instance of the blueprint class
+    from App.errors.handlers import errors #this errors is the instance of the blueprint main class
 
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
     return app

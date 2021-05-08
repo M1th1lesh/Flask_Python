@@ -1,4 +1,5 @@
 #users
+    /__init__.py
     /routes.py contains 
         >register 
         >login
@@ -19,6 +20,7 @@
         ResetPasswordForm
 
 #posts
+    /__init__.py
     /forms.py
         PostForm
     /routes.py
@@ -28,6 +30,11 @@
         delete_post
 
 #main 
+    /__init__.py
     /routes.py
         home
         about
+
+#errors
+    /__init__.py
+    /handlers.py

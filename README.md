@@ -22,9 +22,10 @@ posts ordered as latest post first
 Email and password reset
 Blueprint and configuration
 Moved creation of app to a function
+Custon  error pages
+
 
 Working  : 
-
 
 
 
